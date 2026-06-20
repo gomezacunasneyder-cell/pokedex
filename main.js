@@ -27,8 +27,8 @@ const pokemonSelected = async (pokemonUrl) => {
 
         pokemonName.textContent = "";
         pokemonImage.removeAttribute("src");
-        pokemonStats.innerHTML = "";
-        pokemonabilities.innerHTML = "";
+        pokemonStats.innerHTML = "<h2>Estadisticas</h2>";
+        pokemonabilities.innerHTML = "<h2>Habilidades</h2>";
         pokemonclass.textContent = "";
 
         const response = await fetch(pokemonUrl).then(response => response.json());
@@ -49,12 +49,12 @@ const pokemonSelected = async (pokemonUrl) => {
         })
 
         pokemonImage.addEventListener("mouseenter", () => {
-           let html ="tipo de pokemon: <br>"
-            for (let i = 0; i < response.types.length; i ++){
-                  html+= ` ${response.types[i].type.name}</h3>`;
-            }
-            pokemonclass.innerHTML = html;
-        });
+            let html = '<p class="titulo-tipo">tipo de pokemon:</p>';
+            for (let i = 0; i < response.types.length; i++) {
+            html += `<p>${response.types[i].type.name}</p>`;
+    }
+    pokemonclass.innerHTML = html;
+});
 
         pokemonImage.addEventListener("mouseleave", () => {
             pokemonclass.innerHTML = "";
